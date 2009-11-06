@@ -12,6 +12,7 @@ Url:        http://search.cpan.org/dist/%{upstream_name}
 Source0:    http://www.cpan.org/modules/by-module//%{upstream_name}-%{upstream_version}.tar.gz
 
 BuildRequires: perl-devel
+BuildRequires: x11-server-xvfb
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
@@ -35,8 +36,7 @@ Naming convention:
 rm test.pl
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-
+xvfb-run %{__perl} Makefile.PL INSTALLDIRS=vendor
 %{make}
 
 %check
@@ -54,5 +54,3 @@ rm -rf %buildroot
 %doc CHANGES README GIT_CHANGES
 %{_mandir}/man3/*
 %perl_vendorlib/*
-
-
