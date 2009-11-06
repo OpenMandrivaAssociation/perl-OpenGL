@@ -16,6 +16,7 @@ BuildRequires: mesaglu-devel
 BuildRequires: mesaglut-devel
 BuildRequires: mesaglw-devel
 BuildRequires: perl-devel
+BuildRequires: x11-server-xvfb
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
@@ -39,7 +40,7 @@ Naming convention:
 rm test.pl
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
+xvfb-run %{__perl} Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
 %{make}
 
 %check
