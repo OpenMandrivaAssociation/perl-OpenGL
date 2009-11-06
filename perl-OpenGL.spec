@@ -39,7 +39,7 @@ Naming convention:
 rm test.pl
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+%{__perl} Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
 %{make}
 
 %check
