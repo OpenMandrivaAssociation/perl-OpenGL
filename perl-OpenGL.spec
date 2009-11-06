@@ -11,8 +11,11 @@ Group:      Development/Perl
 Url:        http://search.cpan.org/dist/%{upstream_name}
 Source0:    http://www.cpan.org/modules/by-module//%{upstream_name}-%{upstream_version}.tar.gz
 
+BuildRequires: mesagl-devel
+BuildRequires: mesaglu-devel
+BuildRequires: mesaglut-devel
+BuildRequires: mesaglw-devel
 BuildRequires: perl-devel
-BuildRequires: x11-server-xvfb
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
@@ -36,7 +39,7 @@ Naming convention:
 rm test.pl
 
 %build
-xvfb-run %{__perl} Makefile.PL INSTALLDIRS=vendor
+%{__perl} Makefile.PL INSTALLDIRS=vendor
 %{make}
 
 %check
