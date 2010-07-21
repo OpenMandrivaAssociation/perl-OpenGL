@@ -3,7 +3,7 @@
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Release:    %mkrel 3
 
 Summary:    Interface to OpenGL drawing/imaging library
 License:    GPL+ or Artistic
@@ -40,7 +40,8 @@ Naming convention:
 rm test.pl
 
 %build
-xvfb-run %{__perl} Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
+# (tv) failed b/c of "GLUT: Fatal Error in glversion: OpenGL GLX extension not supported by display: :99" :
+#xvfb-run %{__perl} Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
 %{make}
 
 # since we're building without exclusion, test fail
