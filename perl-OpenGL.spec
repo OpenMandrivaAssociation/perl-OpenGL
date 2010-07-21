@@ -41,7 +41,7 @@ rm test.pl
 
 %build
 # (tv) failed b/c of "GLUT: Fatal Error in glversion: OpenGL GLX extension not supported by display: :99" :
-#xvfb-run %{__perl} Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
+xvfb-run %{__perl} Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
 %{make}
 
 # since we're building without exclusion, test fail
