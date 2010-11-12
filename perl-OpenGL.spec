@@ -1,9 +1,9 @@
 %define upstream_name    OpenGL
-%define upstream_version 0.63
+%define upstream_version 0.64
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 4
+Release:    %mkrel 1
 
 Summary:    Interface to OpenGL drawing/imaging library
 License:    GPL+ or Artistic
