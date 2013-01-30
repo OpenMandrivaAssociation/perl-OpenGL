@@ -9,7 +9,7 @@ Summary:    Interface to OpenGL drawing/imaging library
 License:    GPL+ or Artistic
 Group:      Development/Perl
 Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module//%{upstream_name}-%{upstream_version}.tar.gz
+Source0:    http://search.cpan.org/CPAN/authors/id/C/CH/CHM/%{upstream_name}-%{upstream_version}.tar.gz
 Patch0:		perl-OpenGL-0.62-dist.patch
 BuildRequires: mesa-common-devel
 BuildRequires: pkgconfig(glu)
