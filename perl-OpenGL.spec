@@ -1,15 +1,15 @@
 %define modname	OpenGL
-%define modver	0.66
+%define modver	0.6702
 
 Summary:	Interface to OpenGL drawing/imaging library
 Name:		perl-%{modname}
 Version:	%perl_convert_version %{modver}
-Release:	8
+Release:	1
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{modname}
 Source0:	http://search.cpan.org/CPAN/authors/id/C/CH/CHM/%{modname}-%{modver}.tar.gz
-Patch0:		perl-OpenGL-0.62-dist.patch
+Patch0:		0001-Don-t-check-current-display-for-extensions.patch
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(glut)
 BuildRequires:	perl-devel
@@ -31,7 +31,7 @@ Naming convention:
 
 %prep
 %setup -qn %{modname}-%{modver}
-%patch0 -p0 -b .dist
+%apply_patches
 # test.pl requires interaction, prefer using tests in t/
 rm test.pl
 
@@ -48,7 +48,7 @@ sed 's/PERL_DL_NONLAZY=1//' -i Makefile
 %makeinstall_std
 
 %files
-%doc CHANGES README GIT_CHANGES
+%doc CHANGES README
 %{perl_vendorlib}/*
 %{_mandir}/man3/*
 
