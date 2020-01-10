@@ -31,7 +31,7 @@ Naming convention:
 
 %prep
 %setup -qn %{modname}-%{modver}
-%apply_patches
+%autopatch -p1
 # test.pl requires interaction, prefer using tests in t/
 rm test.pl
 
