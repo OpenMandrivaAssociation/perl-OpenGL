@@ -1,4 +1,2 @@
-removed_sources:
-  OpenGL-0.66.tar.gz: e5245eeb00b3a96e2333a4de6c0f36898d8797c6
 sources:
-  OpenGL-0.6702.tar.gz: da11f7c4ca9ccab2c7b1b8751b3eecf5a8a6e612
+  OpenGL-0.70.tar.gz: 6435b7d90511fb048a83db393645b8d16e8ccfff
