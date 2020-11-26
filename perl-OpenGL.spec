@@ -12,6 +12,8 @@ Source0:	http://search.cpan.org/CPAN/authors/id/C/CH/CHM/%{modname}-%{modver}.ta
 Patch0:		https://src.fedoraproject.org/rpms/perl-OpenGL/raw/master/f/0001-Don-t-check-current-display-for-extensions.patch
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(glut)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xi)
 BuildRequires:	perl-devel
 
 %description
