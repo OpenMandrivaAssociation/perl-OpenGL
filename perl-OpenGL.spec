@@ -51,5 +51,5 @@ sed 's/PERL_DL_NONLAZY=1//' -i Makefile
 
 %files
 %doc CHANGES README
-%{perl_vendorlib}/*
+%{perl_vendorarch}/*
 %{_mandir}/man3/*
