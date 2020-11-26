@@ -37,7 +37,8 @@ Naming convention:
 rm test.pl
 
 %build
-%__perl Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
+sed -i -e 's#L/usr/lib#L%{_libdir}#g' Makefile.PL
+perl Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
 sed 's/PERL_DL_NONLAZY=1//' -i Makefile
 %make_build
 
