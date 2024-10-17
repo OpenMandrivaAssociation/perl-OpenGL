@@ -7,7 +7,7 @@ Version:	%perl_convert_version %{modver}
 Release:	2
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{modname}
+Url:		https://search.cpan.org/dist/%{modname}
 Source0:	http://search.cpan.org/CPAN/authors/id/C/CH/CHM/%{modname}-%{modver}.tar.gz
 Patch0:		https://src.fedoraproject.org/rpms/perl-OpenGL/raw/master/f/0001-Don-t-check-current-display-for-extensions.patch
 BuildRequires:	pkgconfig(glu)
