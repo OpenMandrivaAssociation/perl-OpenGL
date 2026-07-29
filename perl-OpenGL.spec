@@ -4,7 +4,7 @@
 Summary:	Interface to OpenGL drawing/imaging library
 Name:		perl-%{modname}
 Version:	%{modver}
-Release:	3
+Release:	4
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		https://github.com/Perl-GPU/pogl
@@ -36,7 +36,12 @@ Naming convention:
 rm -f test.pl
 
 %build
-sed -i -e 's#L/usr/lib#L%{_libdir}#g' Makefile.PL
+# Makefile.PL searches bare /usr/lib; with lld that can pull i386 ELF and
+# break glversion on x86_64 ("incompatible with elf32-i386"). Prefer %{_libdir}.
+sed -i -e 's@/usr/lib@%{_libdir}@g' Makefile.PL
+# Force native arch for the glversion helper link line
+export CFLAGS="%{optflags}"
+export LDFLAGS="%{build_ldflags}"
 perl Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
 sed 's/PERL_DL_NONLAZY=1//' -i Makefile
 %make_build
