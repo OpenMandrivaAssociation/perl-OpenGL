@@ -4,7 +4,7 @@
 Summary:	Interface to OpenGL drawing/imaging library
 Name:		perl-%{modname}
 Version:	%{modver}
-Release:	7
+Release:8
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		https://github.com/Perl-GPU/pogl
