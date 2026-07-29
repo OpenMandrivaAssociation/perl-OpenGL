@@ -68,6 +68,6 @@ sed -i \
 %make_install
 
 %files
-%doc CHANGES README
+%doc Changes README COPYRIGHT
 %{perl_vendorarch}/*
 %{_mandir}/man3/*
