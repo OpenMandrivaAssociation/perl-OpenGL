@@ -4,7 +4,7 @@
 Summary:	Interface to OpenGL drawing/imaging library
 Name:		perl-%{modname}
 Version:	%{modver}
-Release:	4
+Release:	5
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		https://github.com/Perl-GPU/pogl
@@ -39,7 +39,12 @@ rm -f test.pl
 # Makefile.PL searches bare /usr/lib; with lld that can pull i386 ELF and
 # break glversion on x86_64 ("incompatible with elf32-i386"). Prefer %{_libdir}.
 sed -i -e 's@/usr/lib@%{_libdir}@g' Makefile.PL
-# Force native arch for the glversion helper link line
+# glversion needs a live X/GL display; mock is headless. Write a static
+# profile instead of compiling/running the probe helper.
+sed -i \
+  -e 's|my $stat = `$exec`;|my $stat = ""; open my $__gf, ">utils/glversion.txt" or die $!; print $__gf "FREEGLUT=30000\nGLUT=4\nVERSION=4.6\nVENDOR=Mesa\nRENDERER=llvmpipe\nEXTENSIONS=\n"; close $__gf;|' \
+  -e '/die "Error building glversion.txt: $stat" if $?;/d' \
+  Makefile.PL
 export CFLAGS="%{optflags}"
 export LDFLAGS="%{build_ldflags}"
 perl Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
