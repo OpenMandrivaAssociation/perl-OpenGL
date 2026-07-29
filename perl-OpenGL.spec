@@ -4,7 +4,7 @@
 Summary:	Interface to OpenGL drawing/imaging library
 Name:		perl-%{modname}
 Version:	%{modver}
-Release:	5
+Release:	6
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		https://github.com/Perl-GPU/pogl
@@ -45,10 +45,15 @@ sed -i \
   -e 's|my $stat = `$exec`;|my $stat = ""; open my $__gf, ">utils/glversion.txt" or die $!; print $__gf "FREEGLUT=30000\nGLUT=4\nVERSION=4.6\nVENDOR=Mesa\nRENDERER=llvmpipe\nEXTENSIONS=\n"; close $__gf;|' \
   -e '/die "Error building glversion.txt: $stat" if $?;/d' \
   Makefile.PL
-export CFLAGS="%{optflags}"
+# GL ARB entry points need prototypes; C99 defaults them to error
+export CFLAGS="%{optflags} -DGL_GLEXT_PROTOTYPES"
 export LDFLAGS="%{build_ldflags}"
 perl Makefile.PL INSTALLDIRS=vendor dist=NO_EXCLUSIONS
 sed 's/PERL_DL_NONLAZY=1//' -i Makefile
+# generate-XS.pl needs unpackaged OpenGL::Modern; ship empty auto-xs
+: > auto-xs.inc
+sed -i 's|^auto-xs.inc :.*|auto-xs.inc:|' Makefile
+sed -i '/auto-xs.inc:/{n;s|.*|\t@true|}' Makefile
 %make_build
 
 %check
