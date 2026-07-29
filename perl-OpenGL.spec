@@ -1,15 +1,14 @@
-%define modname	OpenGL
-%define modver	0.7009
+%define modname OpenGL
+%define modver 0.7009
 
 Summary:	Interface to OpenGL drawing/imaging library
 Name:		perl-%{modname}
 Version:	%{modver}
-Release:	1
+Release:	3
 License:	GPLv2+ or Artistic
 Group:		Development/Perl
 Url:		https://github.com/Perl-GPU/pogl
 Source0:	https://cpan.metacpan.org/authors/id/E/ET/ETJ/OpenGL-%{modver}.tar.gz
-Patch0:		https://src.fedoraproject.org/rpms/perl-OpenGL/raw/master/f/0001-Don-t-check-current-display-for-extensions.patch
 BuildRequires:	make
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(glut)
@@ -33,9 +32,8 @@ Naming convention:
 
 %prep
 %setup -qn %{modname}-%{modver}
-%autopatch -p1
 # test.pl requires interaction, prefer using tests in t/
-rm test.pl
+rm -f test.pl
 
 %build
 sed -i -e 's#L/usr/lib#L%{_libdir}#g' Makefile.PL
